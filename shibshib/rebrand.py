@@ -86,6 +86,12 @@ def RUST_FILES():
 def main():
     changed = [p for p in RUST_FILES() if rebrand_rust(p)]
     changed += [p for p in sorted((ROOT / 'crates/ui-egui/locales').glob('*.json')) if rebrand_locale(p)]
+    web = ROOT / 'apps/lightcraft-web/index.html'
+    html = web.read_text(encoding='utf-8')
+    branded = html.replace('<title>LightCraft</title>', f'<title>{NAME}</title>').replace('Loading LightCraft…', f'Loading {NAME}…').replace('content="LightCraft:', f'content="{NAME}:')
+    if branded != html:
+        web.write_text(branded, encoding='utf-8')
+        changed.append(web)
     plist = ROOT / 'packaging/macos/Info.plist.in'
     if plist.exists() and rebrand_plist(plist):
         changed.append(plist)
