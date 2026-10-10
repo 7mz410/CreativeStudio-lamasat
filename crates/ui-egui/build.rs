@@ -92,7 +92,12 @@ fn generate() -> Result<String, Box<dyn std::error::Error>> {
         for (_, variant, messages) in &catalogs {
             if let Some(translated) = messages.get(english) {
                 let translated = serde_json::to_string(translated)?;
-                source.push_str(&format!("            $crate::i18n::Locale::{variant} => format!({translated} $(, $($args)*)?),\n"));
+                // ShibShib: right-to-left languages are put in visual order once filled in (bidi.rs).
+                if variant == "Ar" {
+                    source.push_str(&format!("            $crate::i18n::Locale::{variant} => $crate::bidi::visual(&format!({translated} $(, $($args)*)?)),\n"));
+                } else {
+                    source.push_str(&format!("            $crate::i18n::Locale::{variant} => format!({translated} $(, $($args)*)?),\n"));
+                }
             }
         }
         source.push_str(&format!("            _ => format!({en} $(, $($args)*)?),\n        }}\n    }};\n"));

@@ -151,6 +151,9 @@ pub fn font_definitions_with_chinese(craft: &'static [lightcraft_engine::CraftFo
     let mut fonts = FontDefinitions::default();
     fonts.font_data.insert("Inter".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/Inter-Regular.ttf"))));
     fonts.font_data.insert("Inter-SemiBold".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/Inter-SemiBold.ttf"))));
+    // ShibShib: Arabic glyphs (IBM Plex Sans Arabic, OFL) right after Inter.
+    fonts.font_data.insert("Plex Arabic".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/IBMPlexSansArabic-Regular.ttf"))));
+    fonts.font_data.insert("Plex Arabic SemiBold".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/IBMPlexSansArabic-SemiBold.ttf"))));
     // Craft-fonts faces in preference order for a family drawn in `style`.
     let fallback = |style: &str| {
         lightcraft_engine::fonts::cjk_fallback(craft, crate::i18n::language().script(), style)
@@ -180,10 +183,12 @@ pub fn font_definitions_with_chinese(craft: &'static [lightcraft_engine::CraftFo
     let mut prop = vec!["Inter".to_string()];
     prop.extend(defaults.iter().cloned());
     prop.extend(regular);
+    prop.push("Plex Arabic".into());
     fonts.families.insert(FontFamily::Proportional, prop);
     let mut semi = vec!["Inter-SemiBold".to_string()];
     semi.extend(defaults);
     semi.extend(bold);
+    semi.push("Plex Arabic SemiBold".into());
     fonts.families.insert(FontFamily::Name(FONT_SEMIBOLD.into()), semi);
     let mono = fonts.families.entry(FontFamily::Monospace).or_default();
     let mut mono_fallback = fallback("Regular");

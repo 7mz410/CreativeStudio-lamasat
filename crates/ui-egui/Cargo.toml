@@ -9,6 +9,7 @@ description = "LightCraft egui frontend (Lightroom-style UI); swappable — noth
 workspace = true
 
 [dependencies]
+unicode-bidi = "0.3.18"
 lightcraft-geom = { workspace = true }
 lightcraft-meta = { workspace = true }
 lightcraft-color = { workspace = true }

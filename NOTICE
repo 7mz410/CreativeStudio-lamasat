@@ -3,9 +3,11 @@ Copyright (c) 2026 ArtCraft Team and the LightCraft contributors.
 Licensed under the MIT License or the Apache License, Version 2.0, at your option
 (LICENSE-MIT, LICENSE-APACHE).
 
-The ArtCraft name, wordmark and logos in docs/brand/ are trademarks of the ArtCraft Team. They are
-not open source and are not covered by the license above; their terms are in
-docs/brand/LICENSE-brand.txt.
+ShibShib ttshat is a fork of LightCraft by the ArtCraft Team and the LightCraft contributors
+(https://github.com/storytold/lightcraft), made by the ShibShib project (https://shibshib.art).
+Our changes are listed in shibshib/CHANGES.md. The ShibShib name and logos belong to the ShibShib
+project. The ArtCraft name and logos are trademarks of the ArtCraft Team; this fork does not use
+them, as their brand terms require (upstream's docs/brand/ was removed).
 
 Third-party material
 
@@ -13,6 +15,7 @@ This product bundles third-party material under its own licenses, listed below. 
 list (author, source, license) is in assets/ATTRIBUTION.md.
 
 Inter (assets/fonts/Inter-*.ttf) — SIL Open Font License 1.1. See assets/fonts/OFL-Inter.txt.
+IBM Plex Sans Arabic (assets/fonts/IBMPlexSansArabic-*.ttf) — SIL Open Font License 1.1. See assets/fonts/OFL-IBMPlexSansArabic.txt.
 Showcase photographs by Ansel Adams, Dorothea Lange and NASA (docs/images/) — public domain. See assets/ATTRIBUTION.md.
 
 crates/raw/src/spectral_table.rs (lightcraft-raw) holds camera colour matrices derived from the
