@@ -52,7 +52,7 @@ def rebrand_rust(path: Path) -> bool:
     src = path.read_text(encoding='utf-8')
     out = src
     for a, b in SPECIFIC.get(path.relative_to(ROOT).as_posix(), []):
-        if b not in out:
+        if not b or b not in out:
             out = out.replace(a, b)
     out = STRING.sub(lambda m: rename(m.group(0)), out)
     if out != src:
