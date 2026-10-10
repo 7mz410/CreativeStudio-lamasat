@@ -130,8 +130,8 @@ language_table! {
     Ru, "ru", "Русский", "Cyrl", include_str!("../locales/ru.json");
     Fr, "fr", "Français", "Latn", include_str!("../locales/fr.json");
     Uk, "uk", "Українська", "Cyrl", include_str!("../locales/uk.json");
-    // ShibShib: Arabic joins this table when shibshib/ar-work is fully translated.
-    // Ar, "ar", "العربية", "Arab", include_str!("../locales/ar.json");
+    // ShibShib: Arabic (shibshib/ar-work), right to left.
+    Ar, "ar", "العربية", "Arab", include_str!("../locales/ar.json");
 }
 
 // The settings file stores the BCP-47 code (`"zh-hans"`), never the Rust variant name, so a
@@ -673,6 +673,7 @@ mod tests {
             ("app.language.german", Locale::De),
             ("app.language.russian", Locale::Ru),
             ("app.language.ukrainian", Locale::Uk),
+            ("app.language.arabic", Locale::Ar),
         ];
         // One command per language, and every command reachable from the menu table.
         assert_eq!(commands.len(), Locale::ALL.len());

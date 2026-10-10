@@ -29,7 +29,16 @@ for part in sorted(HERE.glob('part_*')):
         v = json.loads('"' + v.replace('"', '\\"') + '"')
         # Keep the source's leading and trailing spaces (they join fragments).
         v = k[:len(k) - len(k.lstrip(' '))] + v.strip(' ') + k[len(k.rstrip(' ')):]
-        if sorted(PH.findall(k)) != sorted(PH.findall(v)):
+        if kind == 'f':
+            # format!: named placeholders as a set, positional ones in the same order and number
+            # (`{:.0}` stands in for a positional English plural suffix and prints nothing).
+            def split(t):
+                ph = PH.findall(t.replace('{{', '').replace('}}', ''))
+                named = sorted(set(p.strip('{}').split(':')[0] for p in ph if re.match(r'\{[A-Za-z_]', p)))
+                return named, len([p for p in ph if not re.match(r'\{[A-Za-z_]', p)])
+            if split(k) != split(v):
+                problems.append(f'{part.name}: placeholders differ: {k!r} -> {v!r}')
+        elif sorted(PH.findall(k)) != sorted(PH.findall(v)):
             problems.append(f'{part.name}: placeholders differ: {k!r} -> {v!r}')
         (fmts if kind == 'f' else msgs)[k] = v
 (HERE / 'ar.json').write_text(json.dumps(msgs, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
