@@ -55,7 +55,7 @@ pub fn resizable_side(
     ui.ctx().data_mut(|d| d.remove::<egui::containers::panel::PanelState>(pid));
     let avail = ui.available_rect_before_wrap();
     let max = (avail.width() - reserve - crate::state::MIN_PHOTO_WIDTH).clamp(limits.min, limits.max);
-    // ShibShib: the side panels change sides right to left.
+    // Creative Studio: the side panels change sides right to left.
     let panel = if left != egui::is_rtl() { egui::Panel::left(pid) } else { egui::Panel::right(pid) };
     let r = panel.frame(frame).resizable(true).size_range(limits.min..=max).default_size(limits.clamp(width).min(max)).show(ui, add);
     crate::widgets::register(ui.ctx(), format!("panel:{id}"), r.response.rect);

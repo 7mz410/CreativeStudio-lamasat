@@ -5,7 +5,7 @@
 `tr_NN` holds one translation per line in the same order (JSON escapes such as \\n are allowed).
 Writes `ar.json` and `ar-formats.json` here; move them to crates/ui-egui/locales/ when complete.
 
-    python3 shibshib/ar-work/assemble.py
+    python3 studio/ar-work/assemble.py
 """
 import json
 import re

@@ -54,7 +54,7 @@ macro_rules! language_table {
                 // English text, it never takes the app down.
                 let parse = |catalog: Option<&'static str>| match catalog {
                     Some(json) => match serde_json::from_str::<BTreeMap<String, String>>(json) {
-                        // ShibShib: right-to-left translations are stored in visual order (bidi.rs).
+                        // Creative Studio: right-to-left translations are stored in visual order (bidi.rs).
                         Ok(messages) if crate::bidi::RTL_CODES.contains(&self.code()) => {
                             messages.into_iter().map(|(k, v)| (k, crate::bidi::visual(&v))).collect()
                         }
@@ -130,7 +130,7 @@ language_table! {
     Ru, "ru", "Русский", "Cyrl", include_str!("../locales/ru.json");
     Fr, "fr", "Français", "Latn", include_str!("../locales/fr.json");
     Uk, "uk", "Українська", "Cyrl", include_str!("../locales/uk.json");
-    // ShibShib: Arabic (shibshib/ar-work), right to left.
+    // Creative Studio: Arabic (studio/ar-work), right to left.
     Ar, "ar", "العربية", "Arab", include_str!("../locales/ar.json");
 }
 
@@ -212,10 +212,10 @@ include!(concat!(env!("OUT_DIR"), "/tr-formats.rs"));
 /// (issue #260), in the UI language: the error and, when there is one, the log file to look in.
 pub fn startup_failed_message(error: &str, log_file: Option<&str>) -> (String, String) {
     let text = match log_file {
-        Some(path) => tr_format!("ShibShib ttshat could not open its window: {e}\n\nThe log file has the details: {path}", e = error, path = path),
-        None => tr_format!("ShibShib ttshat could not open its window: {e}", e = error),
+        Some(path) => tr_format!("ttshat could not open its window: {e}\n\nThe log file has the details: {path}", e = error, path = path),
+        None => tr_format!("ttshat could not open its window: {e}", e = error),
     };
-    (tr("ShibShib ttshat could not start").to_string(), text)
+    (tr("ttshat could not start").to_string(), text)
 }
 
 pub fn builtin_label(source: &str, builtin: bool) -> &str {
@@ -492,7 +492,7 @@ mod tests {
     #[test]
     fn startup_failure_message_names_the_error_and_the_log() {
         let (title, text) = startup_failed_message("no adapter", Some("/home/a/.config/lightcraft/logs/lightcraft.log"));
-        assert_eq!(title, "ShibShib ttshat could not start");
+        assert_eq!(title, "ttshat could not start");
         assert!(text.contains("no adapter") && text.ends_with("lightcraft.log"), "{text}");
         assert!(!startup_failed_message("no adapter", None).1.contains("log file"));
     }
@@ -907,7 +907,7 @@ mod tests {
         app.ui.left_panel = true;
         let text = painted_text(&ctx, &mut app, Locale::Uk);
         assert!(text.contains("Мої фото") && text.contains("Усі фото"), "{text}");
-        for (command, title) in [("app.about", "Про ShibShib ttshat"), ("app.shortcuts", "Клавіатурні скорочення"), ("app.settings", "Налаштування")]
+        for (command, title) in [("app.about", "Про ttshat"), ("app.shortcuts", "Клавіатурні скорочення"), ("app.settings", "Налаштування")]
         {
             app.ui.dialog = None;
             app.run(command, serde_json::json!({})).unwrap();
@@ -1051,7 +1051,7 @@ mod tests {
         app.ui.view = crate::state::ViewMode::People;
         let text = painted_text(&ctx, &mut app, Locale::De);
         assert!(text.contains("Benannte Personen"), "{text}");
-        for (command, title) in [("app.about", "Über ShibShib ttshat"), ("app.shortcuts", "Tastenkürzel"), ("app.settings", "Einstellungen")] {
+        for (command, title) in [("app.about", "Über ttshat"), ("app.shortcuts", "Tastenkürzel"), ("app.settings", "Einstellungen")] {
             app.ui.dialog = None;
             app.run(command, serde_json::json!({})).unwrap();
             let text = painted_text(&ctx, &mut app, Locale::De);
@@ -1239,7 +1239,7 @@ mod tests {
             // replacement-glyph face, which there is Hack, the face that draws Latin.)
             for family in [egui::FontFamily::Proportional, egui::FontFamily::Name(crate::theme::FONT_SEMIBOLD.into())] {
                 let font = egui::FontId::new(13.0, family);
-                assert!("ShibShib ttshat".chars().all(|ch| fonts.has_glyph(&font, ch)), "{font:?}");
+                assert!("ttshat".chars().all(|ch| fonts.has_glyph(&font, ch)), "{font:?}");
             }
         });
         let mut app = crate::LightcraftApp::new(lightcraft_engine::Session::with_demo(), Default::default());

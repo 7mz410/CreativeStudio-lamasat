@@ -6,7 +6,7 @@
 #![forbid(unsafe_code)]
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable)]
 
-/// ShibShib: Arabic text in visual order for egui.
+/// Creative Studio: Arabic text in visual order for egui.
 pub(crate) mod bidi;
 pub mod album_picker;
 pub mod control;
@@ -517,7 +517,7 @@ impl LightcraftApp {
                 let t = ctx.input(|i| i.time);
                 self.ui.toast = Some((
                     crate::i18n::tr_format!(
-                        "{n} change{} saved in memory but not written to disk: {e} — ShibShib ttshat will retry",
+                        "{n} change{} saved in memory but not written to disk: {e} — ttshat will retry",
                         if n == 1 { "" } else { "s" },
                         n = n,
                         e = e
@@ -1010,7 +1010,7 @@ impl LightcraftApp {
     /// Lay out the whole window.
     pub fn ui(&mut self, ui: &mut egui::Ui) {
         i18n::set_language(self.ui.language);
-        // ShibShib: Arabic lays the interface out right to left (vendor/egui). The switch is
+        // Creative Studio: Arabic lays the interface out right to left (vendor/egui). The switch is
         // process-wide, so unit tests, which run in parallel, leave it off.
         #[cfg(not(test))]
         egui::set_rtl(crate::bidi::RTL_CODES.contains(&self.ui.language.code()));

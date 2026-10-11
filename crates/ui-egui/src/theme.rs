@@ -151,7 +151,7 @@ pub fn font_definitions_with_chinese(craft: &'static [lightcraft_engine::CraftFo
     let mut fonts = FontDefinitions::default();
     fonts.font_data.insert("Inter".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/Inter-Regular.ttf"))));
     fonts.font_data.insert("Inter-SemiBold".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/Inter-SemiBold.ttf"))));
-    // ShibShib: Arabic glyphs (IBM Plex Sans Arabic, OFL) right after Inter.
+    // Creative Studio: Arabic glyphs (IBM Plex Sans Arabic, OFL) right after Inter.
     fonts.font_data.insert("Plex Arabic".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/IBMPlexSansArabic-Regular.ttf"))));
     fonts.font_data.insert("Plex Arabic SemiBold".into(), Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/IBMPlexSansArabic-SemiBold.ttf"))));
     // Craft-fonts faces in preference order for a family drawn in `style`.

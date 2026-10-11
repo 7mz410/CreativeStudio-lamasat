@@ -1,7 +1,7 @@
-# ShibShib ttshat app icon
+# ttshat app icon
 
-**Artwork:** the ShibShib ttshat tile by Hamza Abu Ayyash (the ShibShib flip-flop in a photo frame
-on the ttshat blue, `#44b8ff`), from `~/Documents/ShibShib/file icons/ttshat.svg`. It replaces
+**Artwork:** the ttshat tile by Hamza Abu Ayyash (the Creative Studio flip-flop in a photo frame
+on the ttshat blue, `#44b8ff`), from `~/Documents/CreativeStudio/file icons/ttshat.svg`. It replaces
 upstream LightCraft's lynx icon.
 
 **Tile:** `viewBox="0 0 512 512"`, a rounded square with `rx=112`, clipped. The macOS files add

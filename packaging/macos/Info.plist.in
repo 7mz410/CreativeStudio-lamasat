@@ -7,13 +7,13 @@
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleDisplayName</key>
-  <string>ShibShib ttshat</string>
+  <string>ttshat</string>
   <key>CFBundleName</key>
-  <string>ShibShib ttshat</string>
+  <string>ttshat</string>
   <key>CFBundleExecutable</key>
   <string>LightCraft</string>
   <key>CFBundleIdentifier</key>
-  <string>com.shibshib.ttshat</string>
+  <string>ps.creative.studio.ttshat</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundlePackageType</key>

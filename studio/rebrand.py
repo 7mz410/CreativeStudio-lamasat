@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""Apply the ShibShib ttshat branding on top of upstream LightCraft.
+"""Apply the ttshat branding on top of upstream LightCraft.
 
 Only user-visible text is rebranded; crate names, file formats and other internals keep their
 upstream names so `git merge upstream/main` stays easy. The script is idempotent: after merging
 upstream, resolve any conflicts in favour of upstream and run it again.
 
-    python3 shibshib/rebrand.py
+    python3 studio/rebrand.py
 """
 import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-NAME = 'ShibShib ttshat'
-REPO = 'https://github.com/7mz410/ShibShib-ttshat'
-SITE = 'https://shibshib.art'
+NAME = 'ttshat'
+REPO = 'https://github.com/7mz410/CreativeStudio-ttshat'
+SITE = 'https://studio.creative.ps'
 # Persisted names that saved catalogs and presets refer to; renaming them would break those.
 KEEP = ('LightCraft Default', 'not a LightCraft backup')
 
@@ -34,7 +34,7 @@ SPECIFIC = {
 LITERALS = [
     ('Join the ArtCraft Discord', 'Upstream Community on Discord'),
     ('Join the ArtCraft community on Discord', 'The upstream ArtCraft community on Discord'),
-    ('ArtCraft Website', 'ShibShib Website'),
+    ('ArtCraft Website', 'Creative Studio Website'),
 ]
 
 STRING = re.compile(r'"(?:[^"\\\n]|\\.)*"')
@@ -73,7 +73,7 @@ def rebrand_locale(path: Path) -> bool:
 def rebrand_plist(path: Path) -> bool:
     src = path.read_text(encoding='utf-8')
     out = re.sub(r'(<key>CFBundle(?:Display)?Name</key>\s*<string>)LightCraft(</string>)', rf'\g<1>{NAME}\2', src)
-    out = out.replace('<string>ai.storyteller.lightcraft</string>', '<string>com.shibshib.ttshat</string>')
+    out = out.replace('<string>ai.storyteller.lightcraft</string>', '<string>ps.creative.studio.ttshat</string>')
     if out != src:
         path.write_text(out, encoding='utf-8')
     return out != src
