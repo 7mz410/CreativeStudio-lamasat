@@ -330,7 +330,7 @@ impl PrefsWriter {
             Err(e) => {
                 if !self.failing {
                     log::warn!("{e}");
-                    app.notices.push(format!("{e}. ttshat keeps trying."));
+                    app.notices.push(format!("{e}. lamasat keeps trying."));
                 }
                 self.failing = true;
                 // don't retry every frame
@@ -539,7 +539,7 @@ fn services(cc: &eframe::CreationContext<'_>, log_file: Option<&std::path::Path>
         save_preset_file: Some(Box::new(|name: &str| {
             file_dialog()
                 .set_title(lightcraft_ui_egui::i18n::tr("Export Presets"))
-                .add_filter_nocase(lightcraft_ui_egui::i18n::tr("ttshat Preset"), &["lcpreset"])
+                .add_filter_nocase(lightcraft_ui_egui::i18n::tr("lamasat Preset"), &["lcpreset"])
                 .set_file_name(name)
                 .save_file()
                 .map(|p| p.to_string_lossy().to_string())
@@ -754,7 +754,7 @@ fn main() -> eframe::Result {
         match log_dir().filter(|_| !in_memory) {
             Some(dir) => match logger.attach_dir(&dir) {
                 Ok(path) => {
-                    log::info!("ttshat {}, log file {}", env!("CARGO_PKG_VERSION"), path.display());
+                    log::info!("lamasat {}, log file {}", env!("CARGO_PKG_VERSION"), path.display());
                     log_file = Some(path);
                 }
                 // The file sink has given up by now, so this goes to standard error only.
@@ -794,7 +794,7 @@ fn main() -> eframe::Result {
     let options = eframe::NativeOptions {
         renderer,
         viewport: egui::ViewportBuilder::default()
-            .with_title("ttshat")
+            .with_title("lamasat")
             .with_inner_size([1600.0, 1000.0])
             .with_min_inner_size([900.0, 560.0])
             .with_drag_and_drop(true)
@@ -823,7 +823,7 @@ fn main() -> eframe::Result {
     }
     let started = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         eframe::run_native(
-            "ttshat",
+            "lamasat",
             options,
             Box::new(move |cc| {
                 // the window's renderer is up (eframe calls this after creating it)
@@ -892,7 +892,7 @@ fn main() -> eframe::Result {
     if let Err(e) = &started {
         // the renderer never came up: start again, which tries the next one in the chain
         if window_gpu::relaunch_after_failure(&win_files) {
-            log::error!("ttshat could not open its window with {}: {e}; trying the next renderer", window_renderer.name());
+            log::error!("lamasat could not open its window with {}: {e}; trying the next renderer", window_renderer.name());
             return Ok(());
         }
         startup_failed(&e.to_string(), log_file.as_deref());
@@ -904,7 +904,7 @@ fn main() -> eframe::Result {
 /// message box naming the log file, instead of exiting without a trace — the release builds have
 /// no console on Windows, and an app started from Finder shows no standard error (issue #260).
 fn startup_failed(error: &str, log_file: Option<&std::path::Path>) {
-    log::error!("ttshat could not open its window: {error}");
+    log::error!("lamasat could not open its window: {error}");
     if std::env::var_os("LIGHTCRAFT_NO_PREFS").is_some() {
         return; // tests and scripts: no dialog to click away
     }

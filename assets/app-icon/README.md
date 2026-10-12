@@ -1,7 +1,7 @@
-# ttshat app icon
+# lamasat app icon
 
-**Artwork:** the ttshat tile by Hamza Abu Ayyash (the Creative Studio flip-flop in a photo frame
-on the ttshat blue, `#44b8ff`), from `~/Documents/CreativeStudio/file icons/ttshat.svg`. It replaces
+**Artwork:** the lamasat tile by Hamza Abu Ayyash (the Creative Studio flip-flop in a photo frame
+on the lamasat blue, `#44b8ff`), from `~/Documents/CreativeStudio/file icons/lamasat.svg`. It replaces
 upstream LightCraft's lynx icon.
 
 **Tile:** `viewBox="0 0 512 512"`, a rounded square with `rx=112`, clipped. The macOS files add

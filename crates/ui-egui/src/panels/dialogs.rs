@@ -261,7 +261,7 @@ pub fn show(app: &mut LightcraftApp, ctx: &egui::Context) {
         // (nothing to download from in this build: the dialog explains the manual install)
         Dialog::SamModel { .. } if sam_by_hand(&app.session.segmenter) => "Install the SAM 3 Model",
         Dialog::SamModel { .. } => "Download the SAM 3 Model?",
-        Dialog::About => "About ttshat",
+        Dialog::About => "About lamasat",
         Dialog::Shortcuts => "Keyboard Shortcuts",
     }
     .to_string();
@@ -931,7 +931,7 @@ pub fn show(app: &mut LightcraftApp, ctx: &egui::Context) {
                                 ui.add(egui::TextEdit::singleline(&mut opts.photos_album).hint_text(crate::i18n::tr("none")).desired_width(f32::INFINITY))
                             });
                             ui.label(
-                                egui::RichText::new(crate::i18n::tr("The first time, macOS asks whether ttshat may control Photos."))
+                                egui::RichText::new(crate::i18n::tr("The first time, macOS asks whether lamasat may control Photos."))
                                     .size(11.0)
                                     .color(t.text_dim),
                             );
@@ -1095,7 +1095,7 @@ pub fn show(app: &mut LightcraftApp, ctx: &egui::Context) {
                 }
                 d @ Dialog::SynchronizeFolder { .. } => crate::sync::body(app, ui, d),
                 Dialog::LightroomCatalog { folder, catalog } => {
-                    ui.label(crate::i18n::tr("This is a Lightroom catalog, not a ttshat library. Import it into a ttshat library instead?"));
+                    ui.label(crate::i18n::tr("This is a Lightroom catalog, not a lamasat library. Import it into a lamasat library instead?"));
                     ui.label(egui::RichText::new(catalog.as_deref().unwrap_or(folder.as_str())).color(t.text_dim));
                     ui.label(
                         egui::RichText::new(crate::i18n::tr(
@@ -1137,7 +1137,7 @@ pub fn show(app: &mut LightcraftApp, ctx: &egui::Context) {
                         1 => crate::credits::contributors_ui(app, ui),
                         2 => crate::credits::models_ui(ui),
                         _ => {
-                            ui.label(egui::RichText::new("ttshat").font(t.semibold(20.0)).color(t.text));
+                            ui.label(egui::RichText::new("lamasat").font(t.semibold(20.0)).color(t.text));
                             ui.label(crate::i18n::tr_format!("Version {} — a clean-room, pure-Rust photo library and raw developer.", env!("CARGO_PKG_VERSION")));
                             ui.label(crate::i18n::tr_format!(
                                 "MIT OR Apache-2.0. Fonts: {} (OFL). Icons: original.",
@@ -1154,7 +1154,7 @@ pub fn show(app: &mut LightcraftApp, ctx: &egui::Context) {
                             }
                             ui.add_space(6.0);
                             for (label, url) in [
-                                ("ttshat website", crate::links::APP_PAGE),
+                                ("lamasat website", crate::links::APP_PAGE),
                                 ("Source code on GitHub", crate::links::GITHUB),
                                 ("ArtCraft — more creative apps", crate::links::WEBSITE),
                             ] {
@@ -1420,7 +1420,7 @@ fn sam_model_body(app: &mut LightcraftApp, ui: &mut egui::Ui, error: Option<&str
     }
     let gb = |b: u64| b as f64 / 1e9;
     ui.label(crate::i18n::tr(
-        "Object and Describe masks use SAM 3, Meta's segmentation model. It isn't part of ttshat, and everything else works without it.",
+        "Object and Describe masks use SAM 3, Meta's segmentation model. It isn't part of lamasat, and everything else works without it.",
     ));
     let dir = seg.dir.as_ref().map(|d| d.display().to_string()).unwrap_or_default();
     ui.label(format!("{} {:.1} GB, {} {dir}", crate::i18n::tr("A one-time download of about"), gb(MODEL_BYTES), crate::i18n::tr("saved in")));
@@ -1428,7 +1428,7 @@ fn sam_model_body(app: &mut LightcraftApp, ui: &mut egui::Ui, error: Option<&str
         egui::RichText::new(format!(
             "{} {LICENSE_NAME} — {}",
             crate::i18n::tr("Licence:"),
-            crate::i18n::tr("Meta's terms, not ttshat's. Downloading it means accepting them.")
+            crate::i18n::tr("Meta's terms, not lamasat's. Downloading it means accepting them.")
         ))
         .color(t.text_label),
     );

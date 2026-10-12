@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build ttshat's Arabic catalogs from the translated batches.
+"""Build lamasat's Arabic catalogs from the translated batches.
 
 `part_NN` lines are `<m|f><TAB><JSON string>` (m: locales/ar.json, f: locales/ar-formats.json);
 `tr_NN` holds one translation per line in the same order (JSON escapes such as \\n are allowed).

@@ -7,13 +7,13 @@
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleDisplayName</key>
-  <string>ttshat</string>
+  <string>lamasat</string>
   <key>CFBundleName</key>
-  <string>ttshat</string>
+  <string>lamasat</string>
   <key>CFBundleExecutable</key>
   <string>LightCraft</string>
   <key>CFBundleIdentifier</key>
-  <string>ps.creative.studio.ttshat</string>
+  <string>ps.creative.studio.lamasat</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundlePackageType</key>

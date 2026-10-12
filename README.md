@@ -1,8 +1,8 @@
 <p align="center">
-  <img alt="ttshat" src="docs/studio/ttshat.svg" width="140">
+  <img alt="lamasat" src="docs/studio/lamasat.svg" width="140">
 </p>
 
-<h1 align="center">ttshat</h1>
+<h1 align="center">lamasat</h1>
 
 <p align="center">
   <b>Free, open-source photo library and raw development — part of the Creative Studio creative suite.</b><br>
@@ -20,10 +20,10 @@
 
 ## Built on LightCraft
 
-ttshat is a fork of **[LightCraft](https://github.com/storytold/lightcraft)**, the
+lamasat is a fork of **[LightCraft](https://github.com/storytold/lightcraft)**, the
 open-source, clean-room photo library and non-destructive raw developer written in Rust by the
 **[ArtCraft](https://getartcraft.com/)** team and the LightCraft contributors. Almost everything
-that makes this app work is their work. Thank you. If you like ttshat, please star and
+that makes this app work is their work. Thank you. If you like lamasat, please star and
 support the upstream project as well.
 
 What we add: the Creative Studio identity, a full Arabic interface laid out right to left, and Arabic
@@ -36,7 +36,7 @@ Upstream's own README, with the full feature list and build instructions, is in
 | App | What it's for | Based on |
 |---|---|---|
 | [Creative Studio rsm](https://github.com/7mz410/CreativeStudio-rsm) | Vector illustration | VectorCraft |
-| **ttshat** | Photo library and raw development | LightCraft |
+| **lamasat** | Photo library and raw development | LightCraft |
 
 More apps are on the way: see [studio.creative.ps](https://studio.creative.ps/).
 

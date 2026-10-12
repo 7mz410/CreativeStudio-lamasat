@@ -227,10 +227,10 @@ impl NativeMenu {
         self.items.clear();
 
         // the application menu
-        let app_menu = Submenu::new("ttshat", true);
-        let about = MenuItem::with_id("app.about", lightcraft_ui_egui::i18n::tr("About ttshat"), true, None);
+        let app_menu = Submenu::new("lamasat", true);
+        let about = MenuItem::with_id("app.about", lightcraft_ui_egui::i18n::tr("About lamasat"), true, None);
         let settings = MenuItem::with_id(SETTINGS, lightcraft_ui_egui::i18n::tr("Settings…"), true, accelerator(SETTINGS_KEY));
-        let quit = MenuItem::with_id(QUIT, lightcraft_ui_egui::i18n::tr("Quit ttshat"), true, accelerator("Cmd+Q"));
+        let quit = MenuItem::with_id(QUIT, lightcraft_ui_egui::i18n::tr("Quit lamasat"), true, accelerator("Cmd+Q"));
         let _ = app_menu.append_items(&[
             &about,
             &PredefinedMenuItem::separator(),
@@ -238,7 +238,7 @@ impl NativeMenu {
             &PredefinedMenuItem::separator(),
             &PredefinedMenuItem::services(Some(lightcraft_ui_egui::i18n::tr("Services"))),
             &PredefinedMenuItem::separator(),
-            &PredefinedMenuItem::hide(Some(lightcraft_ui_egui::i18n::tr("Hide ttshat"))),
+            &PredefinedMenuItem::hide(Some(lightcraft_ui_egui::i18n::tr("Hide lamasat"))),
             &PredefinedMenuItem::hide_others(Some(lightcraft_ui_egui::i18n::tr("Hide Others"))),
             &PredefinedMenuItem::show_all(Some(lightcraft_ui_egui::i18n::tr("Show All"))),
             &PredefinedMenuItem::separator(),
@@ -457,7 +457,7 @@ mod tests {
         set_language(Locale::ZhHant);
         assert_eq!(label_text("File"), "檔案");
         assert_eq!(label_text("Settings…"), "設定…");
-        assert_eq!(label_text("Quit ttshat"), "結束 ttshat");
+        assert_eq!(label_text("Quit lamasat"), "結束 lamasat");
         set_language(Locale::En);
     }
 

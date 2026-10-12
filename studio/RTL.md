@@ -1,6 +1,6 @@
 # Right-to-left interface (Creative Studio)
 
-When the interface language is Arabic, ttshat lays its interface out right to left: the tool
+When the interface language is Arabic, lamasat lays its interface out right to left: the tool
 bar sits on the right, the dock on the left, and rows, grids, columns, menus and dialogs run from
 the right. The canvas, rulers and artwork are not mirrored.
 

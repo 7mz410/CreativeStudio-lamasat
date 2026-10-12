@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply the ttshat branding on top of upstream LightCraft.
+"""Apply the lamasat branding on top of upstream LightCraft.
 
 Only user-visible text is rebranded; crate names, file formats and other internals keep their
 upstream names so `git merge upstream/main` stays easy. The script is idempotent: after merging
@@ -12,8 +12,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-NAME = 'ttshat'
-REPO = 'https://github.com/7mz410/CreativeStudio-ttshat'
+NAME = 'lamasat'
+REPO = 'https://github.com/7mz410/CreativeStudio-lamasat'
 SITE = 'https://studio.creative.ps'
 # Persisted names that saved catalogs and presets refer to; renaming them would break those.
 KEEP = ('LightCraft Default', 'not a LightCraft backup')
@@ -73,7 +73,7 @@ def rebrand_locale(path: Path) -> bool:
 def rebrand_plist(path: Path) -> bool:
     src = path.read_text(encoding='utf-8')
     out = re.sub(r'(<key>CFBundle(?:Display)?Name</key>\s*<string>)LightCraft(</string>)', rf'\g<1>{NAME}\2', src)
-    out = out.replace('<string>ai.storyteller.lightcraft</string>', '<string>ps.creative.studio.ttshat</string>')
+    out = out.replace('<string>ai.storyteller.lightcraft</string>', '<string>ps.creative.studio.lamasat</string>')
     if out != src:
         path.write_text(out, encoding='utf-8')
     return out != src
@@ -101,3 +101,11 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# Creative Studio: the app's Arabic name in its Arabic interface (studio/arabic_names.py).
+import sys  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import arabic_names  # noqa: E402
+for _p in arabic_names.apply(ROOT, NAME, "لمسات"):
+    print("rebranded", _p.relative_to(ROOT))

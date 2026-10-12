@@ -670,7 +670,7 @@ impl LightcraftApp {
                 let t = ctx.input(|i| i.time);
                 self.ui.toast = Some((
                     crate::i18n::tr_format!(
-                        "{n} change{} saved in memory but not written to disk: {e} — ttshat will retry",
+                        "{n} change{} saved in memory but not written to disk: {e} — lamasat will retry",
                         if n == 1 { "" } else { "s" },
                         n = n,
                         e = e
@@ -1263,11 +1263,11 @@ impl LightcraftApp {
         ctx.send_viewport_cmd(egui::ViewportCommand::Title(self.window_title()));
     }
 
-    /// "ttshat — <library name>" (just "ttshat" for a library that isn't saved).
+    /// "lamasat — <library name>" (just "lamasat" for a library that isn't saved).
     pub fn window_title(&self) -> String {
         match panels::settings::open_library_name(self) {
-            Some(name) => format!("ttshat — {name}"),
-            None => "ttshat".to_string(),
+            Some(name) => format!("lamasat — {name}"),
+            None => "lamasat".to_string(),
         }
     }
 
