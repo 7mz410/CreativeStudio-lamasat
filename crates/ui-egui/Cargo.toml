@@ -2,6 +2,7 @@
 name = "lightcraft-ui-egui"
 version.workspace = true
 edition.workspace = true
+rust-version = "1.95"
 license.workspace = true
 description = "LightCraft egui frontend (Lightroom-style UI); swappable — nothing below depends on it (L5)"
 
@@ -10,6 +11,7 @@ workspace = true
 
 [dependencies]
 unicode-bidi = "0.3.18"
+craft-ui = { workspace = true }
 lightcraft-geom = { workspace = true }
 lightcraft-meta = { workspace = true }
 lightcraft-color = { workspace = true }
@@ -26,6 +28,7 @@ serde_json = { workspace = true }
 log = { workspace = true }
 
 [dev-dependencies]
+egui_kittest = { workspace = true, features = ["wgpu", "snapshot"] }
 lightcraft-denoise = { workspace = true, features = ["runtime"] }
 lightcraft-codecs = { workspace = true }
 lightcraft-faces = { workspace = true }

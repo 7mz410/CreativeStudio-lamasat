@@ -228,5 +228,21 @@
   "+{n} more": "+{n} أخرى",
   "1 task is still running: {names}. Quitting stops it.": "مهمة واحدة ما زالت تعمل: {names}. الإنهاء يوقفها.",
   "{n} tasks are still running: {names}. Quitting stops them.": "{n} مهام ما زالت تعمل: {names}. الإنهاء يوقفها.",
-  "{what} merge cancelled": "أُلغي دمج {what}"
+  "{what} merge cancelled": "أُلغي دمج {what}",
+  "Import warnings ({n}):\n{warnings}": "تحذيرات الاستيراد ({n}):\n{warnings}",
+  "XMP profile \"{profile}\" was not applied for {path}; colors may differ from Lightroom.": "لم يُطبَّق ملف XMP الشخصي \"{profile}\" على {path}؛ قد تختلف الألوان عن Lightroom.",
+  "Lightroom geometry was not preserved for {path}; {mode} will be recalculated.": "لم تُحفظ هندسة Lightroom لـ {path}؛ سيُعاد حساب {mode}.",
+  "Lightroom geometry for {path} was not preserved; saved transform is ignored because Upright is Off.": "لم تُحفظ هندسة Lightroom لـ {path}؛ التحويل المحفوظ مُتجاهل لأن Upright متوقف.",
+  "Lightroom geometry for {path} was not preserved; Guided Upright saved transform is unsupported.": "لم تُحفظ هندسة Lightroom لـ {path}؛ تحويل Guided Upright المحفوظ غير مدعوم.",
+  "Lightroom geometry for {path} was not preserved; saved Upright transform is unsupported.": "لم تُحفظ هندسة Lightroom لـ {path}؛ تحويل Upright المحفوظ غير مدعوم.",
+  "XMP adjustments were not imported for {path}: {fields}.": "لم تُستورد تعديلات XMP لـ {path}: {fields}.",
+  "Restored {} photo{} from Recently Deleted": "استُعيدت {} صورة{:.0} من المحذوفة مؤخراً",
+  "· {trashed} in Recently Deleted": "· {trashed} في المحذوفة مؤخراً",
+  "{n} Local photo{} skipped: albums hold library photos (Add to My Photos first)": "تم تخطي {n} صورة محلية{:.0}: الألبومات تحتوي صور المكتبة (أضفها إلى صوري أولاً)",
+  "New Folder in “{name}”": "مجلد جديد في “{name}”",
+  "Moved {} photo(s)": "نُقلت {} صورة",
+  "not added to Apple Photos: {e}": "لم تُضف إلى صور Apple: {e}",
+  "{n} added to Apple Photos album “{album}”": "أُضيفت {n} إلى ألبوم صور Apple “{album}”",
+  "{n} added to Apple Photos": "أُضيفت {n} إلى صور Apple",
+  "{n} photos opened for editing; each is stacked with its original": "فُتحت {n} صورة للتعديل؛ كل واحدة مكدّسة مع أصلها"
 }

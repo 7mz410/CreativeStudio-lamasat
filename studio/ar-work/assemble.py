@@ -26,6 +26,8 @@ for part in sorted(HERE.glob('part_*')):
     for line, v in zip(keys, vals):
         kind, k = line.split('\t', 1)
         k = json.loads(k)
+        if v.strip() == '-':
+            continue  # not translated yet: the app shows the English text
         v = json.loads('"' + v.replace('"', '\\"') + '"')
         # Keep the source's leading and trailing spaces (they join fragments).
         v = k[:len(k) - len(k.lstrip(' '))] + v.strip(' ') + k[len(k.rstrip(' ')):]
