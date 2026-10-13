@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build, sign and (optionally) notarize the macOS release artifacts:
 #
-#   $DIST/lightcraft-<version>-macos-<arch>.dmg          LightCraft.app on a drag-to-Applications DMG
+#   $DIST/lightcraft-<version>-macos-<arch>.dmg          lamasat.app on a drag-to-Applications DMG
 #   $DIST/lightcraft-cli-<version>-macos-<arch>.zip      the headless CLI
 #
 # Usage: packaging/macos/package.sh [--arch universal|aarch64|x86_64] [--skip-build]
@@ -39,7 +39,7 @@ export MACOSX_DEPLOYMENT_TARGET=11.0
 IDENTITY="${MACOS_SIGN_IDENTITY:--}"
 SHORT_VERSION="${VERSION%%-*}"
 WORK="$CARGO_TARGET_DIR/macos-package"
-APP="$WORK/LightCraft.app"
+APP="$WORK/lamasat.app"
 DMG="$DIST/lightcraft-$VERSION-macos-$ARCH.dmg"
 CLI_ZIP="$DIST/lightcraft-cli-$VERSION-macos-$ARCH.zip"
 
@@ -97,7 +97,7 @@ notarize() {
   fi
 }
 
-# ---- LightCraft.app ----------------------------------------------------------------------------
+# ---- lamasat.app ----------------------------------------------------------------------------
 echo "==> assembling $APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # Executable and icon carry the display name (CFBundleExecutable / CFBundleIconFile).
@@ -134,7 +134,7 @@ fi
 echo "==> building $DMG"
 STAGE="$WORK/dmg"
 mkdir -p "$STAGE"
-ditto "$APP" "$STAGE/LightCraft.app"
+ditto "$APP" "$STAGE/lamasat.app"
 ln -s /Applications "$STAGE/Applications"
 # Finder window layout: background, icon size and positions (packaging/macos/dmg/README.md).
 mkdir -p "$STAGE/.background"
@@ -158,7 +158,7 @@ hdiutil_retry() {
     sleep $((attempt * 10))
   done
 }
-hdiutil_retry create -srcfolder "$STAGE" -volname "LightCraft" -fs HFS+ -format UDZO \
+hdiutil_retry create -srcfolder "$STAGE" -volname "lamasat" -fs HFS+ -format UDZO \
   -imagekey zlib-level=9 -ov "$DMG"
 sign "$DMG"
 codesign --verify --strict --verbose=2 "$DMG"
@@ -173,21 +173,21 @@ verify_dmg_app() {
     hdiutil detach "$mount" >/dev/null 2>&1 || true
     return 1
   fi
-  echo "==> strict codesign of LightCraft.app in finished DMG"
-  codesign --verify --deep --strict --verbose=2 "$mount/LightCraft.app" || rc=1
+  echo "==> strict codesign of lamasat.app in finished DMG"
+  codesign --verify --deep --strict --verbose=2 "$mount/lamasat.app" || rc=1
   if [ "$rc" = 0 ]; then
-    ditto "$mount/LightCraft.app" "$copy/LightCraft.app" || rc=1
+    ditto "$mount/lamasat.app" "$copy/lamasat.app" || rc=1
   fi
   if [ "$rc" = 0 ]; then
-    echo "==> strict codesign of LightCraft.app after ditto install-copy"
-    codesign --verify --deep --strict --verbose=2 "$copy/LightCraft.app" || rc=1
+    echo "==> strict codesign of lamasat.app after ditto install-copy"
+    codesign --verify --deep --strict --verbose=2 "$copy/lamasat.app" || rc=1
   fi
   if [ "$rc" = 0 ] && [ "$NOTARIZE" = 1 ]; then
-    spctl --assess --type execute -vvv "$copy/LightCraft.app" || rc=1
+    spctl --assess --type execute -vvv "$copy/lamasat.app" || rc=1
   fi
   if [ "$rc" != 0 ]; then
     echo "error: published-image app verification failed; reject $DMG" >&2
-    xattr -lr "$mount/LightCraft.app" >&2 || true
+    xattr -lr "$mount/lamasat.app" >&2 || true
   fi
   if ! hdiutil_retry detach "$mount" >/dev/null; then
     echo "error: could not detach verification mount" >&2

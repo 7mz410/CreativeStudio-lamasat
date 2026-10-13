@@ -20,5 +20,5 @@ jobs:
       app: lamasat
       package: lightcraft
       version_var: LIGHTCRAFT_VERSION
-      bundle: LightCraft.app
+      bundle: lamasat.app
       tag: ${{ github.ref_name }}
