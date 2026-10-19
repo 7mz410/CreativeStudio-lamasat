@@ -84,6 +84,8 @@ def rebrand_plist(path: Path) -> bool:
     src = path.read_text(encoding='utf-8')
     out = re.sub(r'(<key>CFBundle(?:Display)?Name</key>\s*<string>)LightCraft(</string>)', rf'\g<1>{NAME}\2', src)
     out = out.replace('<string>ai.storyteller.lightcraft</string>', '<string>ps.creative.studio.lamasat</string>')
+    # lamasat has no document file; upstream's leftover claim on .pcraft (tlween's format) goes.
+    out = re.sub(r'  <key>UTExportedTypeDeclarations</key>\n  <array>\n    <dict>\n      <key>UTTypeIdentifier</key>\n      <string>ai\.storyteller\.lightcraft\.document</string>.*?\n  </array>\n', '', out, flags=re.S)
     if out != src:
         path.write_text(out, encoding='utf-8')
     return out != src
