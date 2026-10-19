@@ -20,6 +20,10 @@ KEEP = ('LightCraft Default', 'not a LightCraft backup')
 
 # Exact replacements, applied before the general rename (and kept idempotent: skipped once done).
 SPECIFIC = {
+    'crates/engine/src/open_path.rs': [
+        ('isn\'t one of the file types LightCraft reads, so', 'isn\'t one of the file types lamasat reads, so'),
+        ('which isn\'t a file type LightCraft reads', 'which isn\'t a file type lamasat reads'),
+    ],
     'crates/ui-egui/src/links.rs': [
         ('pub const WEBSITE: &str = "https://getartcraft.com";', f'pub const WEBSITE: &str = "{SITE}";'),
         ('pub const APP_PAGE: &str = "https://getartcraft.com/apps/lightcraft";', f'pub const APP_PAGE: &str = "{SITE}";'),
@@ -38,6 +42,9 @@ LITERALS = [
 ]
 
 STRING = re.compile(r'"(?:[^"\\\n]|\\.)*"')
+# The middle lines of such a string (no quote on the line; the text runs to a backslash).
+MIDDLE = re.compile(r'(?m)^(\s+)([^\n"]*LightCraft[^\n"]*)\\$')
+CONTINUED = re.compile(r'(?m)^(\s*)"((?:[^"\\\n]|\\.)*)\\$')
 
 
 def rename(text: str) -> str:
@@ -55,6 +62,9 @@ def rebrand_rust(path: Path) -> bool:
         if not b or b not in out:
             out = out.replace(a, b)
     out = STRING.sub(lambda m: rename(m.group(0)), out)
+    # A string that continues on the next line (ends with a backslash) is not matched by STRING above.
+    out = CONTINUED.sub(lambda m: m.group(1) + '"' + rename(m.group(2)) + '\\', out)
+    out = MIDDLE.sub(lambda m: m.group(1) + rename(m.group(2)) + '\\', out)
     if out != src:
         path.write_text(out, encoding='utf-8')
     return out != src
@@ -80,7 +90,8 @@ def rebrand_plist(path: Path) -> bool:
 
 
 def RUST_FILES():
-    return sorted((ROOT / 'crates/ui-egui/src').rglob('*.rs')) + sorted((ROOT / 'apps/lightcraft/src').rglob('*.rs'))
+    # The engine's open_path.rs words its refusal for the UI (the test in ui-egui checks that wording).
+    return sorted((ROOT / 'crates/ui-egui/src').rglob('*.rs')) + sorted((ROOT / 'apps/lightcraft/src').rglob('*.rs')) + [ROOT / 'crates/engine/src/open_path.rs']
 
 
 def main():
