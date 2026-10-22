@@ -295,5 +295,6 @@
   "{what} merge added at {mp}: its full size, {full}, needs more memory than this computer has": "{what} merge added at {mp}: its full size, {full}, needs more memory than this computer has",
   "· {in_source} identical copies": "· {in_source} identical copies",
   "“{to}” is already a person. Combining them makes one person; Undo separates them again.": "“{to}” is already a person. Combining them makes one person; Undo separates them again.",
-  "…and {more} more": "…and {more} more"
+  "…and {more} more": "…and {more} more",
+  "{skipped} catalog images were not imported because their records in the catalog are incomplete.": "{skipped} catalog images were not imported because their records in the catalog are incomplete."
 }
