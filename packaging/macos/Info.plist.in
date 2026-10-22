@@ -7,13 +7,13 @@
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleDisplayName</key>
-  <string>LightCraft</string>
+  <string>lamasat</string>
   <key>CFBundleName</key>
-  <string>LightCraft</string>
+  <string>lamasat</string>
   <key>CFBundleExecutable</key>
   <string>LightCraft</string>
   <key>CFBundleIdentifier</key>
-  <string>ai.storyteller.lightcraft</string>
+  <string>ps.creative.studio.lamasat</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundlePackageType</key>
