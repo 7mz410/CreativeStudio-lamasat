@@ -207,6 +207,8 @@ pub struct Session {
     pub catalog: Catalog,
     pub source: LibrarySource,
     pub filter: Filter,
+    /// The filter `library.toggleFilters` put aside (Library > Enable Filters off); not persisted.
+    pub(crate) shelved_filter: Option<Filter>,
     pub sort: Sort,
     pub selection: Selection,
     /// The grid order for the current source/filter/sort (cached by catalog revision).
@@ -422,6 +424,7 @@ impl Session {
             catalog: Catalog::new(),
             source: LibrarySource::All,
             filter: Filter::default(),
+            shelved_filter: None,
             sort: Sort::default(),
             selection: Selection::default(),
             visible: Vec::new().into(),
@@ -950,7 +953,16 @@ impl Session {
             return Vec::new();
         }
         let Some(old) = self.develop_of(id) else { return Vec::new() };
-        let Some(mut delta) = json_delta(&old.to_json(), &new.to_json()) else { return Vec::new() };
+        let mut old_json = old.to_json();
+        let mut new_json = new.to_json();
+        // False is omitted from stored profile JSON. Keep it explicit for this comparison so
+        // switching camera local tone mapping off is a change without copying untouched values.
+        old_json["profile"]["camera_local_tone"] = Value::Bool(old.profile.camera_local_tone);
+        new_json["profile"]["camera_local_tone"] = Value::Bool(new.profile.camera_local_tone);
+        // Compare actual HDR leaves even when persisted defaults omit the whole HDR object.
+        old_json["hdr"] = serde_json::json!(old.hdr);
+        new_json["hdr"] = serde_json::json!(new.hdr);
+        let Some(mut delta) = json_delta(&old_json, &new_json) else { return Vec::new() };
         if let Some(o) = delta.as_object_mut() {
             for k in ["spots", "red_eye", "version", "process"] {
                 o.remove(k);
@@ -1017,6 +1029,11 @@ impl Session {
     }
 
     // ---------------------------------------------------------------- library view
+
+    /// Library > Enable Filters is off: a filter is put aside (`library.toggleFilters`).
+    pub fn filters_off(&self) -> bool {
+        self.shelved_filter.is_some()
+    }
 
     /// Photos shown in the grid/filmstrip for the current source, filter and sort.
     pub fn visible(&mut self) -> &[PhotoId] {
@@ -1327,6 +1344,8 @@ mod tests_forget_local;
 mod tests_history_cursor;
 #[cfg(test)]
 mod tests_hold_view;
+#[cfg(test)]
+mod tests_ids_params;
 #[cfg(test)]
 mod tests_import;
 #[cfg(test)]

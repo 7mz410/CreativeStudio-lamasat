@@ -296,5 +296,6 @@
   "· {in_source} identical copies": "· {in_source} نسخ متطابقة",
   "“{to}” is already a person. Combining them makes one person; Undo separates them again.": "«{to}» شخص موجود مسبقاً. دمجهما يجعلهما شخصاً واحداً؛ والتراجع يفصلهما من جديد.",
   "…and {more} more": "…و{more} غيرها",
-  "{skipped} catalog images were not imported because their records in the catalog are incomplete.": "لم تُستورد {skipped} من صور الكتالوج لأن سجلاتها فيه غير مكتملة."
+  "{skipped} catalog images were not imported because their records in the catalog are incomplete.": "لم تُستورد {skipped} من صور الكتالوج لأن سجلاتها فيه غير مكتملة.",
+  "Listing folders — folders: {folders}, files: {files}": "Listing folders — folders: {folders}, files: {files}"
 }
