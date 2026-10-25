@@ -139,6 +139,5 @@ mod tests {
     }
 
     #[test]
-    fn catalog_rows_keep_their_columns() {
-    }
+    fn catalog_rows_keep_their_columns() {}
 }

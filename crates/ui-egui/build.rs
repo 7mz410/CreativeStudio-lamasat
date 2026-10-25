@@ -83,7 +83,9 @@ fn generate() -> Result<String, Box<dyn std::error::Error>> {
                 let translated = serde_json::to_string(translated)?;
                 // Creative Studio: right-to-left languages are put in visual order once filled in (bidi.rs).
                 if variant == "Ar" {
-                    source.push_str(&format!("            $crate::i18n::Locale::{variant} => $crate::bidi::visual(&format!({translated} $(, $($args)*)?)),\n"));
+                    source.push_str(&format!(
+                        "            $crate::i18n::Locale::{variant} => $crate::bidi::visual(&format!({translated} $(, $($args)*)?)),\n"
+                    ));
                 } else {
                     source.push_str(&format!("            $crate::i18n::Locale::{variant} => format!({translated} $(, $($args)*)?),\n"));
                 }
